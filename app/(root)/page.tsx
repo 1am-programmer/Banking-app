@@ -6,11 +6,16 @@ these routes would be accessible via URLs like /admin/dashboard, /admin/users, e
  or area of your application.
 */
 import HeaderBox from "@/components/HeaderBox";
+import RightSidebar from "@/components/RightSidebar";
 import TotalBalancebox from "@/components/TotalBalancebox";
 import React from "react";
 
 const Home = () => {
-  const loggedIn = { firstName: "Danny" };
+  const loggedIn = {
+    firstName: "Danny",
+    lastName: "Daniel",
+    email: "dannydotdev@gmail.com",
+  };
   return (
     <section className="home">
       <div className="home-content">
@@ -27,7 +32,9 @@ const Home = () => {
             totalCurrentBalance={1250.35}
           />
         </header>
+        RECENT TRANSACTIONS
       </div>
+      <RightSidebar user={loggedIn} transactions={[]} banks={[]} />
     </section>
   );
 };
