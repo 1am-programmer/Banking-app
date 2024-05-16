@@ -43,13 +43,22 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
         {banks?.length > 0 && (
           <div className="relative flex flex-1 flex-col items-center justify-center gap-5">
             <div className="relative z-10">
-              <Bankcard />
+              <Bankcard
+                key={banks[0].$id}
+                account={banks[0]}
+                userName={`${user.firstName} ${user.lastName}`}
+                showBalance={false}
+              />
             </div>
-
             {/* IF banks and Index[1] i.e a 2nd bank because index 1 is the 2nd item in an array, return this div  */}
             {banks[1] && (
-              <div className="absolute right-0 top-8 z-0 w-[90p%]">
-                <Bankcard />
+              <div className="absolute right-0 top-8 z-0 w-[90%]">
+                <Bankcard
+                  key={banks[1].$id}
+                  account={banks[1]}
+                  userName={`${user.firstName} ${user.lastName}`}
+                  showBalance={false}
+                />
               </div>
             )}
           </div>
