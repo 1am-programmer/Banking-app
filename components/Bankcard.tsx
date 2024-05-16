@@ -26,25 +26,34 @@ const Bankcard = ({
               <h1 className="text-12 font-semibold text-white pr-5">
                 {userName}
               </h1>
-              <h2 className="text-12 font-semibold text-white">**/****</h2>
+              <h2 className="text-12 font-semibold text-white">●●/ ●●</h2>
             </div>
             <p className="text-14 font-semibold tracking-[1.1px] text-white">
-              **** **** ****
-              <span className="text-16 ">${account.mask}</span>
+              ●●●● ●●●● ●●●●
+              <span className="text-16 ">1234</span>
             </p>
           </article>
         </div>
 
         <div className="bank-card_icon ">
-          <Image src={"icons/Paypass.svg"} alt="pay" width={20} height={24} />
+          <Image src={"/icons/Paypass.svg"} alt="pay" width={20} height={24} />
           <Image
-            src={"icons/mastercard.svg"}
-            alt="pay"
+            src={"/icons/mastercard.svg"}
+            alt="mastercard"
             width={45}
             height={32}
+            className="ml-5"
           />
         </div>
+        <Image
+          src={"/icons/lines.png"}
+          alt="lines"
+          width={316}
+          height={190}
+          className="absolute top-0 left-0"
+        />
       </Link>
+      {/* *COPY CARD NUMBER* */}
     </div>
   );
 };
