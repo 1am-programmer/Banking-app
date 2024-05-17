@@ -1,6 +1,6 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, Control } from "react-hook-form";
+import { useForm, Control, FieldPath } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,13 +18,19 @@ import { authFormSchema } from "@/lib/utils";
 interface CustomInput {
   //   form: typeof Form;
   control: Control<z.infer<typeof authFormSchema>>;
-  name: String;
-  label: String;
-  type: String;
-  placeholder: String;
+  name: FieldPath<z.infer<typeof authFormSchema>>;
+  label: string;
+  type: string;
+  placeholder: string;
 }
 
-const CustomInput = ({ control, label, placeholder, type }: CustomInput) => {
+const CustomInput = ({
+  control,
+  name,
+  label,
+  placeholder,
+  type,
+}: CustomInput) => {
   return (
     <div>
       <FormField
@@ -38,8 +44,8 @@ const CustomInput = ({ control, label, placeholder, type }: CustomInput) => {
                 <Input
                   placeholder={placeholder}
                   className="input-class"
-                  {...field}
                   type={type}
+                  {...field}
                   // You have the spread the fields, that is how the react form works
                 />
               </FormControl>
