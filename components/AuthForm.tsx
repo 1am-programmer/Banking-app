@@ -75,14 +75,14 @@ const AuthForm = ({ type }: { type: string }) => {
                     control={form.control}
                     name="firstName"
                     label="First Name"
-                    placeholder="ex: Dan"
+                    placeholder="example: Dan"
                     type={"text"}
                   />
                   <CustomInput
                     control={form.control}
                     name="lastName"
                     label="Last Name"
-                    placeholder="ex: Danny"
+                    placeholder="example: Danny"
                     type={"text"}
                   />
                   <CustomInput
@@ -96,14 +96,14 @@ const AuthForm = ({ type }: { type: string }) => {
                     control={form.control}
                     name="postal"
                     label="Postal Code"
-                    placeholder="ex: 810014"
+                    placeholder="Example: 810014"
                     type={"text"}
                   />
                   <CustomInput
                     control={form.control}
                     name="state"
                     label="State"
-                    placeholder="ex: North Carolina"
+                    placeholder="Example: NY"
                     type={"text"}
                   />
 
@@ -111,7 +111,7 @@ const AuthForm = ({ type }: { type: string }) => {
                     control={form.control}
                     name="Dob"
                     label="Date of Birth"
-                    placeholder="13-11-1990"
+                    placeholder="yyyy-mm-dd"
                     type={"text"}
                   />
 
