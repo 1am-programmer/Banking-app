@@ -15,10 +15,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { authFormSchema } from "@/lib/utils";
 
+const formSchema = authFormSchema("sign-up");
 interface CustomInput {
   //   form: typeof Form;
-  control: Control<z.infer<typeof authFormSchema>>;
-  name: FieldPath<z.infer<typeof authFormSchema>>;
+  control: Control<z.infer<typeof formSchema>>;
+  name: FieldPath<z.infer<typeof formSchema>>;
   label: string;
   type: string;
   placeholder: string;
