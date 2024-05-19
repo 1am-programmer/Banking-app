@@ -1,5 +1,6 @@
 import React from "react";
 import AuthForm from "@/components/AuthForm";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 /**
  * When you create route groups, they are not added to the file based routing,
@@ -8,7 +9,7 @@ import AuthForm from "@/components/AuthForm";
 
  */
 
-const SignUp = () => {
+const SignUp = async () => {
   return (
     <section className="flex-center size-full max-sm:px-6">
       <AuthForm type="sign-up" />

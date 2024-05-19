@@ -21,8 +21,8 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signIn } from "../lib/actions/user.actions";
-import { signUp } from "../lib/actions/user.actions";
+// import { signIn } from "../lib/actions/user.actions";
+import { signUp, signIn } from "../lib/actions/user.actions";
 
 /**
  * 
@@ -61,12 +61,11 @@ const AuthForm = ({ type }: { type: string }) => {
         setUser(newUser);
       }
       if (type === "sign-in") {
-        //To sign in we need the email and password
+        // To sign in we need the email and password
         const response = await signIn({
           email: data.email,
           password: data.password,
         });
-
         //If the response was successful, use the router to navigate to the homepage
         if (response) router.push("/");
       }
