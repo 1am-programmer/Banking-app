@@ -8,14 +8,12 @@ these routes would be accessible via URLs like /admin/dashboard, /admin/users, e
 import HeaderBox from "@/components/HeaderBox";
 import RightSidebar from "@/components/RightSidebar";
 import TotalBalancebox from "@/components/TotalBalancebox";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+// import { get } from "http";
 import React from "react";
 
-const Home = () => {
-  const loggedIn = {
-    firstName: "Danny",
-    lastName: "Daniel",
-    email: "dannydotdev@gmail.com",
-  };
+const Home = async () => {
+  const loggedIn = await getLoggedInUser();
   return (
     <section className="home">
       <div className="home-content">
@@ -23,7 +21,7 @@ const Home = () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedIn?.firstName || "Guest"}
+            user={loggedIn?.name || "Guest"}
             subtext="Access and manage your account and transactions efficiently"
           />
           <TotalBalancebox
