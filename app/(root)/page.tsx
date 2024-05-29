@@ -5,12 +5,12 @@ these routes would be accessible via URLs like /admin/dashboard, /admin/users, e
 => This approach helps to organize your routes, especially when you have a large number of routes related to a specific feature
  or area of your application.
 */
+import React from "react";
 import HeaderBox from "@/components/HeaderBox";
 import RightSidebar from "@/components/RightSidebar";
 import TotalBalancebox from "@/components/TotalBalancebox";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 // import { get } from "http";
-import React from "react";
 
 const Home = async () => {
   const loggedIn = await getLoggedInUser();

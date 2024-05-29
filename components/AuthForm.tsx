@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -22,7 +21,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 // import { signIn } from "../lib/actions/user.actions";
-import { signUp, signIn } from "../lib/actions/user.actions";
+import { signUp, signIn, getLoggedInUser } from "../lib/actions/user.actions";
 
 /**
  * 
@@ -35,6 +34,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
   const [user, setUser] = useState(null);
   const [isLoading, setisLoading] = useState(false);
+  // const loggedIn = await getLoggedInUser();
 
   const formSchema = authFormSchema(type);
   // 1. Define your form.
