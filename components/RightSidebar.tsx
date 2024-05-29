@@ -8,21 +8,24 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
     <aside className="right-sidebar">
       <section className="flex flex-col pb-8">
         <div className="profile-banner" />
-        {/* using JSX syntax, which is often used in React applications. In JSX, a self-closing <div> 
-        In JSX, you can use self-closing tags for elements that don't have any children. So <div className="profile-banner" /> 
-        creates a <div> element with the class name "profile-banner", but it doesn't have any content inside it.
-           This is equivalent to <div className="profile-banner"></div> in regular HTML.
-          tag like <div className="profile-banner" /> is valid syntax. */}
+
         <div className="profile">
           <div className="profile-img">
             <span className="text-5xl font-bold text-blue-500">
-              {user.name[0]}
+              {user.firstName[0]}
+
+              {/* {user.name[0]} */}
               {/*  Only the first character */}
             </span>
           </div>
 
           <div className="profile-details">
-            <h1 className="profile-name">{user.name}</h1>
+            <h1 className="profile-name">
+              {user.firstName}
+              {user.lastName}
+            </h1>
+
+            {/* <h1 className="profile-name">{user.name}</h1> */}
             <p className="profile-email">{user.email}</p>
           </div>
         </div>

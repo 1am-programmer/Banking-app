@@ -33,7 +33,7 @@ declare type User = {
   dwollaCustomerId: string;
   firstName: string;
   lastName: string;
-  name: string;
+  name: string; //ADDED
   address1: string;
   city: string;
   state: string;
