@@ -20,6 +20,7 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+// import { signIn } from "../lib/actions/user.actions";
 import { signUp, signIn } from "../lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -27,6 +28,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
   const [user, setUser] = useState(null);
   const [isLoading, setisLoading] = useState(false);
+  // const loggedIn = await getLoggedInUser();
 
   const formSchema = authFormSchema(type);
   // 1. Define your form.
