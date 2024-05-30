@@ -51,6 +51,7 @@ const AuthForm = ({ type }: { type: string }) => {
       if (type === "sign-up") {
         /* To Sign up, we await data from signUp function that takes in the data, and the data contains email,
          password and other data from the user in the sign up page */
+
         const newUser = await signUp(data);
 
         setUser(newUser);
@@ -61,6 +62,7 @@ const AuthForm = ({ type }: { type: string }) => {
           email: data.email,
           password: data.password,
         });
+
         // If the response was successful, use the router to navigate to the homepage
         if (response) router.push("/");
       }
