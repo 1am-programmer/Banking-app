@@ -73,3 +73,5 @@
 //     return null;
 //   }
 // };
+
+// SENTRY_AUTH_TOKEN=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
