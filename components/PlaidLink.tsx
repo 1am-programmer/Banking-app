@@ -6,6 +6,7 @@ import {
   usePlaidLink,
 } from "react-plaid-link";
 import { useRouter } from "next/navigation";
+import { createLinkToken } from "@/lib/actions/user.actions";
 
 const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   const router = useRouter();
@@ -14,11 +15,11 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
   useEffect(() => {
     const getLinkToken = async () => {
-      //   const data = await createLinkToken(user);
-      //   setToken(data?.linkToken);
+      const data = await createLinkToken(user);
+      setToken(data?.linkToken);
     };
     getLinkToken();
-  }, []);
+  }, [user]);
   //Has a callback function {WHICH CAN NEVER BE ASYNC} and a dependency array, where you want that function to be when it changes
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
