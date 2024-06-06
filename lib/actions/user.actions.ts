@@ -14,6 +14,13 @@ import {
 } from "plaid";
 import { plaidClient } from "../plaid";
 import { revalidatePath } from "next/cache";
+import { addFundingSource } from "./dwolla.actions";
+
+const {
+  APPWRITE_DATABASE_ID: DATABASE_ID,
+  APPWRITE_USER_COLLECTION_ID: USER_COLLECTION_ID,
+  APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
+} = process.env;
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
@@ -103,6 +110,33 @@ export const createLinkToken = async (user: User) => {
  * Connecting a payment processor so we can transfer funds
  */
 
+export const createBankAccount = async ({
+  userId,
+  bankId,
+  accountId,
+  accessToken,
+  fundingSourceUrl,
+  sharableId,
+}: createBankAccountProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const bankAccount = await database.createDocument(
+      DATABASE_ID!,
+      BANK_COLLECTION_ID!,
+      ID.unique(),
+      {
+        userId,
+        bankId,
+        accountId,
+        accessToken,
+        fundingSourceUrl,
+        sharableId,
+      }
+    );
+    return parseStringify(bankAccount);
+  } catch (error) {}
+};
 const exchangePublicToken = async ({
   publicToken,
   user,
@@ -151,7 +185,7 @@ const exchangePublicToken = async ({
       accountId: accountsData.account_id,
       accessToken,
       fundingSourceUrl,
-      shareableId: encryptId(accountsData.account_id),
+      sharableId: encryptId(accountsData.account_id),
     });
     //Revalidate the path to reflect changes
     revalidatePath("/");
