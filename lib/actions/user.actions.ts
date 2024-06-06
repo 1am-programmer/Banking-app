@@ -95,3 +95,27 @@ export const createLinkToken = async (user: User) => {
  * Making payment transfers between accounts
  * Connecting a payment processor so we can transfer funds
  */
+
+const exchangePublicToken = async ({
+  publicToken,
+  user,
+}: exchangePublicTokenProps) => {
+  try {
+    //Exchange public token for access token and itemId
+    const response = await plaidClient.itemPublicTokenExchange({
+      public_token: publicToken,
+    });
+
+    const accessToken = response.data.access_token;
+    const itemId = response.data.item_id;
+
+    //Get account information from plaid using the access token
+    const accountsResponse = await plaidClient.accountsGet({
+      access_token: accessToken,
+    });
+
+    const accountsData = accountsResponse.data.accounts[0];
+  } catch (error) {
+    console.error("An error occurred while creating exchange token:", error);
+  }
+};

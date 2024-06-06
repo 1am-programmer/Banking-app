@@ -75,3 +75,10 @@
 // };
 
 // SENTRY_AUTH_TOKEN=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
+
+
+1. https://dashboard.plaid.com/developers/keys
+2. https://plaid.com/docs/link/web/
+3. https://www.youtube.com/watch?v=PuOVqP_cjkE&t=12657s
+4. https://cloud.appwrite.io/console/project-665850d3001517ade180/overview/platforms
+5. https://1am-programmer.sentry.io/issues/
