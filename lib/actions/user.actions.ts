@@ -3,10 +3,17 @@
 import { ID } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
-import { parseStringify } from "../utils";
+import { encryptId, parseStringify } from "../utils";
 import { parse } from "path";
-import { AccountType, CountryCode, Products } from "plaid";
+import {
+  AccountType,
+  CountryCode,
+  ProcessorTokenCreateRequest,
+  ProcessorTokenCreateRequestProcessorEnum,
+  Products,
+} from "plaid";
 import { plaidClient } from "../plaid";
+import { revalidatePath } from "next/cache";
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
@@ -115,6 +122,44 @@ const exchangePublicToken = async ({
     });
 
     const accountsData = accountsResponse.data.accounts[0];
+
+    //create a processor token for Dwolla using the access token  and account ID
+    const request: ProcessorTokenCreateRequest = {
+      access_token: accessToken,
+      account_id: accountsData.account_id,
+      processor: "dwolla" as ProcessorTokenCreateRequestProcessorEnum,
+    };
+
+    const processorTokenResponse = await plaidClient.processorTokenCreate(
+      request
+    );
+    const processorToken = processorTokenResponse.data.processor_token;
+
+    //Get a funding source URL for the account using the Dwolla customerID, processor token and bank name
+    const fundingSourceUrl = await addFundingSource({
+      dwollaCustomerId: user.dwollaCustomerId,
+      processorToken,
+      bankName: accountsData.name,
+    });
+    //If funding source is not created, throw error
+    if (!fundingSourceUrl) throw Error;
+
+    //Create a bank account using the userID, itemID,accountID, access Token, funding source URL, shareableID
+    await createBankAccount({
+      userId: user.$id,
+      bankId: itemId,
+      accountId: accountsData.account_id,
+      accessToken,
+      fundingSourceUrl,
+      shareableId: encryptId(accountsData.account_id),
+    });
+    //Revalidate the path to reflect changes
+    revalidatePath("/");
+
+    //Return a success message
+    return parseStringify({
+      publicTokenExchange: "complete",
+    });
   } catch (error) {
     console.error("An error occurred while creating exchange token:", error);
   }
