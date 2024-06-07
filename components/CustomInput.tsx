@@ -23,6 +23,8 @@ interface CustomInput {
   label: string;
   type: string;
   placeholder: string;
+  // id: Number;
+  key: Number;
 }
 
 const CustomInput = ({
@@ -31,6 +33,7 @@ const CustomInput = ({
   label,
   placeholder,
   type,
+  key,
 }: CustomInput) => {
   return (
     <div>
