@@ -48,8 +48,20 @@ const AuthForm = ({ type }: { type: string }) => {
 
     try {
       //Sign in with Appwrite and plaid
-
       if (type === "sign-up") {
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          address: data.address!,
+          city: data.city!,
+          state: data.state!,
+          postalCode: data.postalCode!,
+          dateofBirth: data.dateofBirth!,
+          ssn: data.ssn!,
+          email: data.email,
+          password: data.password,
+        };
+
         /* To Sign up, we await data from signUp function that takes in the data, and the data contains email,
          password and other data from the user in the sign up page */
 
@@ -144,7 +156,7 @@ const AuthForm = ({ type }: { type: string }) => {
                   />
                   <CustomInput
                     control={form.control}
-                    name="postal"
+                    name="postalCode"
                     label="Postal Code"
                     placeholder="Example: 810014"
                     type={"text"}
@@ -154,7 +166,7 @@ const AuthForm = ({ type }: { type: string }) => {
                 <div className="flex gap-4">
                   <CustomInput
                     control={form.control}
-                    name="Dob"
+                    name="dateofBirth"
                     label="Date of Birth"
                     placeholder="YYYY-MM-DD"
                     type={"text"}
