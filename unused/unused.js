@@ -82,9 +82,10 @@
  https://www.youtube.com/watch?v=PuOVqP_cjkE&t=12657s
  https://cloud.appwrite.io/console/project-665850d3001517ade180/overview/platforms
  https://1am-programmer.sentry.io/issues/
+ https://dashboard-sandbox.dwolla.com/customers
 
 
-//  creating a dwolla customer account and adding it to our appwrite database
+
 
 //  Tools
 //  Appwrite

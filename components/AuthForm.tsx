@@ -52,11 +52,11 @@ const AuthForm = ({ type }: { type: string }) => {
         const userData = {
           firstName: data.firstName!,
           lastName: data.lastName!,
-          address: data.address!,
+          address1: data.address1!,
           city: data.city!,
           state: data.state!,
-          postalCode: data.postalCode!,
-          dateofBirth: data.dateofBirth!,
+          PostalCode: data.PostalCode!,
+          dateOfBirth: data.dateOfBirth!,
           ssn: data.ssn!,
           email: data.email,
           password: data.password,
@@ -121,26 +121,23 @@ const AuthForm = ({ type }: { type: string }) => {
                       control={form.control}
                       name="firstName"
                       label="First Name"
-                      placeholder="example: Dan"
+                      placeholder="Example: Dan"
                       type={"text"}
-                      key={10}
                     />
                     <CustomInput
                       control={form.control}
                       name="lastName"
                       label="Last Name"
-                      placeholder="example: Danny"
+                      placeholder="Example: Danny"
                       type={"text"}
-                      key={11}
                     />
                   </div>
                   <CustomInput
                     control={form.control}
-                    name="address"
-                    label="Address"
-                    placeholder="Enter your address"
+                    name="address1"
+                    label="address1"
+                    placeholder="Enter your address1"
                     type={"text"}
-                    key={6}
                   />
                   <CustomInput
                     control={form.control}
@@ -148,7 +145,6 @@ const AuthForm = ({ type }: { type: string }) => {
                     label="City"
                     placeholder="Enter your City"
                     type={"text"}
-                    key={5}
                   />
                   <div className="flex gap-4">
                     <CustomInput
@@ -157,26 +153,23 @@ const AuthForm = ({ type }: { type: string }) => {
                       label="State"
                       placeholder="Example: NY"
                       type={"text"}
-                      key={4}
                     />
                     <CustomInput
                       control={form.control}
-                      name="postalCode"
+                      name="PostalCode"
                       label="Postal Code"
                       placeholder="Example: 810014"
                       type={"text"}
-                      key={3}
                     />
                   </div>
 
                   <div className="flex gap-4">
                     <CustomInput
                       control={form.control}
-                      name="dateofBirth"
+                      name="dateOfBirth"
                       label="Date of Birth"
                       placeholder="YYYY-MM-DD"
                       type={"text"}
-                      key={2}
                     />
 
                     <CustomInput
@@ -197,7 +190,6 @@ const AuthForm = ({ type }: { type: string }) => {
                 label="Email"
                 placeholder="Input your Email"
                 type={"email"}
-                key={7}
               />
               <CustomInput
                 control={form.control}
@@ -205,10 +197,23 @@ const AuthForm = ({ type }: { type: string }) => {
                 label="Password"
                 placeholder="Input your password"
                 type={"password"}
-                key={8}
               />
-
               <div className="flex flex-col gap-4">
+                <Button type="submit" disabled={isLoading} className="form-btn">
+                  {isLoading ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" /> &nbsp;
+                      Loading...
+                    </>
+                  ) : type === "sign-in" ? (
+                    "Sign In"
+                  ) : (
+                    "Sign Up"
+                  )}
+                </Button>
+              </div>
+
+              {/* <div className="flex flex-col gap-4">
                 <Button type="submit" className="form-btn" disabled={isLoading}>
                   {isLoading ? (
                     <>
@@ -221,7 +226,7 @@ const AuthForm = ({ type }: { type: string }) => {
                     "Sign Up"
                   )}
                 </Button>
-              </div>
+              </div> */}
             </form>
           </Form>
 
@@ -235,9 +240,23 @@ const AuthForm = ({ type }: { type: string }) => {
               href={type === "sign-in" ? "/sign-up" : "/sign-in"}
               className="form-link"
             >
-              {type === "sign-in" ? "Sign Up" : "Sign In"}
+              {type === "sign-in" ? "Sign up" : "Sign in"}
             </Link>
           </footer>
+
+          {/* <footer className="flex justify-center gap-1">
+            <p className="text-14 font-normal text-gray-600">
+              {type === "sign-in"
+                ? "Don't have an account?"
+                : "Already have an account?"}
+            </p>
+            <Link
+              href={type === "sign-in" ? "/sign-up" : "/sign-in"}
+              className="form-link"
+            >
+              {type === "sign-in" ? "Sign Up" : "Sign In"}
+            </Link>
+          </footer> */}
         </>
       )}
     </section>
