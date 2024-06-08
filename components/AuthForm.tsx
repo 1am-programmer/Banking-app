@@ -55,7 +55,7 @@ const AuthForm = ({ type }: { type: string }) => {
           address1: data.address1!,
           city: data.city!,
           state: data.state!,
-          PostalCode: data.PostalCode!,
+          postalCode: data.postalCode!,
           dateOfBirth: data.dateOfBirth!,
           ssn: data.ssn!,
           email: data.email,
@@ -156,7 +156,7 @@ const AuthForm = ({ type }: { type: string }) => {
                     />
                     <CustomInput
                       control={form.control}
-                      name="PostalCode"
+                      name="postalCode"
                       label="Postal Code"
                       placeholder="Example: 810014"
                       type={"text"}
