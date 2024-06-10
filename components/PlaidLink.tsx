@@ -52,12 +52,12 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
           disabled={!ready}
           className="plaidlink-primary"
         >
-          Connect Button
+          Connect Bank
         </Button>
       ) : variant === "ghost" ? (
-        <Button>Connect Button</Button>
+        <Button>Connect Bank</Button>
       ) : (
-        <Button>Connect Button</Button>
+        <Button>Connect Bank</Button>
       )}
     </>
   );

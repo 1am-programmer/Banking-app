@@ -13,12 +13,15 @@ import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const Home = async () => {
   const loggedIn = await getLoggedInUser();
-  //  {
-  //   firstName: "Daniel",
-  //   lastName: "Chimezie",
-  //   email: "dannydotdev@gmail.com",
-  // };
-  // await getLoggedInUser();
+
+  /*
+  const loggedIn = {
+    firstName: "Daniel",
+    lastName: "Chimezie",
+    email: "dannydotdev@gmail.com",
+  };
+
+  */
   return (
     <section className="home">
       <div className="home-content">
@@ -26,8 +29,8 @@ const Home = async () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            // user={loggedIn?.name || "Guest"}
             user={loggedIn?.name || "Guest"}
+            // user={loggedIn?.firstName || "Guest"}
             subtext="Access and manage your account and transactions efficiently"
           />
           <TotalBalancebox

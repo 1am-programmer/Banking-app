@@ -20,9 +20,9 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-// import { signIn } from "../lib/actions/user.actions";
-// import { signUp, signIn } from "../lib/actions/user.actions";
+
 import PlaidLink from "./PlaidLink";
+import { signIn, signUp } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -45,37 +45,32 @@ const AuthForm = ({ type }: { type: string }) => {
   // 2. Define a submit handler.
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setisLoading(true);
-
-    /*
     try {
-      //Sign in with Appwrite and plaid
+      //Sign up with appwrite
+
+      const userData = {
+        firstName: data.firstName!,
+        lastName: data.lastName!,
+        address1: data.address1!,
+        city: data.city!,
+        state: data.state!,
+        postalCode: data.postalCode!,
+        dateOfBirth: data.dateOfBirth!,
+        ssn: data.ssn!,
+        email: data.email,
+        password: data.password,
+      };
+
       if (type === "sign-up") {
-        const userData = {
-          firstName: data.firstName!,
-          lastName: data.lastName!,
-          address1: data.address1!,
-          city: data.city!,
-          state: data.state!,
-          postalCode: data.postalCode!,
-          dateOfBirth: data.dateOfBirth!,
-          ssn: data.ssn!,
-          email: data.email,
-          password: data.password,
-        };
-
-
         const newUser = await signUp(userData);
-
         setUser(newUser);
       }
       if (type === "sign-in") {
-        // To sign in we need the email and password
         const response = await signIn({
           email: data.email,
           password: data.password,
         });
 
-        // If the response was successful, use the router to navigate to the homepage
         if (response) router.push("/");
       }
     } catch (error) {
@@ -83,7 +78,6 @@ const AuthForm = ({ type }: { type: string }) => {
     } finally {
       setisLoading(false);
     }
-  */
   };
 
   return (
