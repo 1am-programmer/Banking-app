@@ -23,23 +23,8 @@ const {
   APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
 } = process.env;
 
-// export const getUserInfo = async ({ userId }: getUserInfoProps) => {
-//   try {
-//     const { database } = await createAdminClient();
-
-//     const user = await database.listDocuments(
-//       DATABASE_ID!,
-//       USER_COLLECTION_ID!,
-//       [Query.equal("userId", [userId])]
-//     );
-
-//     return parseStringify(user.documents[0]);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-export const signIn = async ({ email, password }: signInProps) => {
+// export
+const signIn = async ({ email, password }: signInProps) => {
   try {
     const { account } = await createAdminClient();
 
@@ -51,7 +36,8 @@ export const signIn = async ({ email, password }: signInProps) => {
   }
 };
 
-export const signUp = async ({ password, ...userData }: SignUpParams) => {
+// export
+const signUp = async ({ password, ...userData }: SignUpParams) => {
   const { email, firstName, lastName } = userData;
 
   let newUserAccount;
@@ -104,7 +90,6 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
   }
 };
 
-// export const signUp = async ({ password, ...userData }: SignUpParams) => {
 //   const { email, firstName, lastName } = userData;
 
 //   let newUserAccount;
@@ -155,7 +140,8 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
 //   }
 // };
 
-export async function getLoggedInUser() {
+// export
+async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
     const user = await account.get();
@@ -169,7 +155,8 @@ export async function getLoggedInUser() {
   }
 }
 
-export const logoutAccount = async () => {
+// export
+const logoutAccount = async () => {
   try {
     const { account } = await createSessionClient();
 
@@ -181,7 +168,8 @@ export const logoutAccount = async () => {
   }
 };
 
-export const createLinkToken = async (user: User) => {
+// export
+const createLinkToken = async (user: User) => {
   try {
     const tokenParams = {
       user: {

@@ -21,7 +21,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 // import { signIn } from "../lib/actions/user.actions";
-import { signUp, signIn } from "../lib/actions/user.actions";
+// import { signUp, signIn } from "../lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -46,6 +46,7 @@ const AuthForm = ({ type }: { type: string }) => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setisLoading(true);
 
+    /*
     try {
       //Sign in with Appwrite and plaid
       if (type === "sign-up") {
@@ -62,8 +63,6 @@ const AuthForm = ({ type }: { type: string }) => {
           password: data.password,
         };
 
-        /* To Sign up, we await data from signUp function that takes in the data, and the data contains email,
-         password and other data from the user in the sign up page */
 
         const newUser = await signUp(userData);
 
@@ -84,6 +83,7 @@ const AuthForm = ({ type }: { type: string }) => {
     } finally {
       setisLoading(false);
     }
+  */
   };
 
   return (
@@ -97,7 +97,7 @@ const AuthForm = ({ type }: { type: string }) => {
         </Link>
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
-            {/* IF user is true, link account, else it should check the type{the one in props}
+            {/* IF user is true, link account, else it should check the type the one in props}
             if the type === Sign in, display sign page, else display login page */}
             {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
             <p className="text-16 font-normal text-gray-600">
@@ -212,21 +212,6 @@ const AuthForm = ({ type }: { type: string }) => {
                   )}
                 </Button>
               </div>
-
-              {/* <div className="flex flex-col gap-4">
-                <Button type="submit" className="form-btn" disabled={isLoading}>
-                  {isLoading ? (
-                    <>
-                      <Loader2 size={20} className="animate-spin" />
-                      &nbsp; Loading..
-                    </>
-                  ) : type === "sign-in" ? (
-                    "Sign In"
-                  ) : (
-                    "Sign Up"
-                  )}
-                </Button>
-              </div> */}
             </form>
           </Form>
 
@@ -243,20 +228,6 @@ const AuthForm = ({ type }: { type: string }) => {
               {type === "sign-in" ? "Sign up" : "Sign in"}
             </Link>
           </footer>
-
-          {/* <footer className="flex justify-center gap-1">
-            <p className="text-14 font-normal text-gray-600">
-              {type === "sign-in"
-                ? "Don't have an account?"
-                : "Already have an account?"}
-            </p>
-            <Link
-              href={type === "sign-in" ? "/sign-up" : "/sign-in"}
-              className="form-link"
-            >
-              {type === "sign-in" ? "Sign Up" : "Sign In"}
-            </Link>
-          </footer> */}
         </>
       )}
     </section>
