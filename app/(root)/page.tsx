@@ -10,18 +10,18 @@ import HeaderBox from "@/components/HeaderBox";
 import RightSidebar from "@/components/RightSidebar";
 import TotalBalancebox from "@/components/TotalBalancebox";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
+import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 
-const Home = async () => {
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser();
+  const accounts = await getAccounts({ userId: loggedIn });
+  if (!accounts) return;
 
-  /*
-  const loggedIn = {
-    firstName: "Daniel",
-    lastName: "Chimezie",
-    email: "dannydotdev@gmail.com",
-  };
+  const accountsData = accounts?.data;
+  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
 
-  */
+  const account = await getAccount({ appwriteItemId });
+
   return (
     <section className="home">
       <div className="home-content">
@@ -34,9 +34,9 @@ const Home = async () => {
             subtext="Access and manage your account and transactions efficiently"
           />
           <TotalBalancebox
-            accounts={[]}
-            totalBanks={1}
-            totalCurrentBalance={1250.35}
+            accounts={accountsData}
+            totalBanks={accounts?.totatBanks}
+            totalCurrentBalance={accounts?.totalCurrentBalance}
           />
         </header>
         RECENT TRANSACTIONS
