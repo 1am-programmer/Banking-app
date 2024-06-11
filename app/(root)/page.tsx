@@ -14,7 +14,7 @@ import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 
 const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
   const loggedIn = await getLoggedInUser();
-  const accounts = await getAccounts({ userId: loggedIn });
+  const accounts = await getAccounts({ userId: loggedIn.$id });
   if (!accounts) return;
 
   const accountsData = accounts?.data;
@@ -29,13 +29,13 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedIn?.name || "Guest"}
+            user={loggedIn?.firstName || "Guest"}
             // user={loggedIn?.firstName || "Guest"}
             subtext="Access and manage your account and transactions efficiently"
           />
           <TotalBalancebox
             accounts={accountsData}
-            totalBanks={accounts?.totatBanks}
+            totalBanks={accounts?.totalBanks}
             totalCurrentBalance={accounts?.totalCurrentBalance}
           />
         </header>
@@ -43,8 +43,8 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
       </div>
       <RightSidebar
         user={loggedIn}
-        transactions={[]}
-        banks={[{ currentBalance: 1250.78 }, { currentBalance: 1345.72 }]}
+        transactions={accounts?.transactions}
+        banks={accountsData?.slice(0, 2)}
       />
     </section>
   );
