@@ -20,3 +20,5 @@ https://cloud.appwrite.io/console/project-664857ee0034fd714bc5/auth
 //  plaid
 //  Sentry
 //  zod
+
+"Added bank connected dashboard and transfer feature, enabling fund transfers from Plaid accounts with Dwolla validation.";
