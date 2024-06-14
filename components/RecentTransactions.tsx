@@ -46,7 +46,6 @@ const RecentTransactions = ({
             </TabsTrigger>
           ))}
         </TabsList>
-
         {accounts.map((account: Account) => (
           <TabsContent
             value={account.appwriteItemId}
@@ -59,12 +58,13 @@ const RecentTransactions = ({
               type="full"
             />
             <TransactionsTable transactions={currentTransaction} />
-
+            {/*
             {totalPages > 3 && (
               <div className="my-2 w-full">
                 <Pagination totalPages={totalPages} page={page} />
               </div>
             )}
+        */}
           </TabsContent>
         ))}
       </Tabs>
