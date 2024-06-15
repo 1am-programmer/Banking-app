@@ -59,7 +59,7 @@ const page = async ({ searchParams: { id, page } }: SearchParamProps) => {
         <section className="flex w-full flex-col gap-6">
           <TransactionsTable transactions={currentTransaction} />
 
-          {totalPages > 3 && (
+          {totalPages > 1 && (
             <div className="my-2 w-full">
               <Pagination totalPages={totalPages} page={currentPage} />
             </div>
