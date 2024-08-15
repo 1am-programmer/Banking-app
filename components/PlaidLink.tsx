@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import {
   PlaidLinkOnSuccess,
@@ -20,11 +20,12 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   useEffect(() => {
     const getLinkToken = async () => {
       const data = await createLinkToken(user);
+
       setToken(data?.linkToken);
     };
+
     getLinkToken();
   }, [user]);
-  //Has a callback function {WHICH CAN NEVER BE ASYNC} and a dependency array, where you want that function to be when it changes
 
   const onSuccess = useCallback<PlaidLinkOnSuccess>(
     async (public_token: string) => {
@@ -37,12 +38,12 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
     },
     [user]
   );
-  //That means it only gets called when the user changes, the one we are passing in the props
 
   const config: PlaidLinkOptions = {
     token,
     onSuccess,
   };
+
   const { open, ready } = usePlaidLink(config);
 
   return (
@@ -53,7 +54,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
           disabled={!ready}
           className="plaidlink-primary"
         >
-          Connect Bank
+          Connect bank
         </Button>
       ) : variant === "ghost" ? (
         <Button
@@ -62,24 +63,24 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
           className="plaidlink-ghost"
         >
           <Image
-            src={"/icons/connect-bank.svg"}
-            alt="connnect bank"
-            height={24}
+            src="/icons/connect-bank.svg"
+            alt="connect bank"
             width={24}
+            height={24}
           />
-          <p className="hidden text-[16px] font-semibold text-black-2 xl:block">
-            Connect Bank
+          <p className="hiddenl text-[16px] font-semibold text-black-2 xl:block">
+            Connect bank
           </p>
         </Button>
       ) : (
-        <Button className="plaidlink-default" onClick={() => open()}>
+        <Button onClick={() => open()} className="plaidlink-default">
           <Image
-            src={"/icons/connect-bank.svg"}
-            alt="connnect bank"
-            height={24}
+            src="/icons/connect-bank.svg"
+            alt="connect bank"
             width={24}
+            height={24}
           />
-          <p className="text-[16px] font-semibold text-black-2">Connect Bank</p>
+          <p className="text-[16px] font-semibold text-black-2">Connect bank</p>
         </Button>
       )}
     </>
